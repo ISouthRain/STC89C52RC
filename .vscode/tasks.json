@@ -1,0 +1,182 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "sdcc生成任务",
+            "type": "shell",
+            "command": "sdcc ${file}",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "packihx转换文件",
+            "type": "shell",
+            "command": "packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "stcgal进行任务",
+            "type": "shell",
+            "command": "sudo stcgal -P stc89 -p /dev/ttyUSB0 -b 2400 ${fileBasenameNoExtension}.hex",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "完成删除多余文件",
+            "type": "shell",
+            "command": "rm *.asm *.lst *.mem *.rst *.lk *.map *.rel *.sym",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "Linux单片机一步到位",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "focus": true
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "sdcc生成任务",
+                "packihx转换文件",
+                "完成删除多余文件",
+                "stcgal进行任务"
+            ],
+            "problemMatcher": []
+        },
+        //***************** 运行sdcc ***************///
+        {
+            "label": "sdcc编译C文件",
+            "type": "shell",
+            "command": "sdcc ${file}",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "packihx转换文件",
+            "type": "shell",
+            "command": "packihx ${fileBasenameNoExtension}.ihx > ${fileBasenameNoExtension}.hex",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件asm",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.asm",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件lk",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.lk",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件lst",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.lst",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件map",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.map",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件mem",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.mem",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件rel",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.rel",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件rst",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.rst",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件sym",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.sym",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "删除多余文件ihx",
+            "type": "shell",
+            "command": "rm ${fileBasenameNoExtension}.ihx",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
+            "label": "sdcc编译及转换c文件",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "focus": true
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "sdcc编译C文件",
+                "packihx转换文件",
+                "删除多余文件sym",
+                "删除多余文件rst",
+                "删除多余文件rel",
+                "删除多余文件mem",
+                "删除多余文件map",
+                "删除多余文件lst",
+                "删除多余文件lk",
+                "删除多余文件asm",
+                "删除多余文件ihx"
+            ],
+            "problemMatcher": []
+        },
+    ]
+}

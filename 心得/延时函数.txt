@@ -1,0 +1,11 @@
+void Delay(unsigned int t);
+
+void Delay(unsigned int t)
+{
+		unsigned int i;
+ while(t--){
+		 for(i=0;i<100;i++){
+				 ;
+		 }
+ }
+}

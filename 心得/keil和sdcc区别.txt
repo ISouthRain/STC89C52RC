@@ -1,0 +1,14 @@
+* 2 中断  *
+keil c 的中断
+void SerialComm(void ) interrupt 4 using 1
+{
+}
+
+sdcc 的中断
+void SerialComm(void) __interrupt 4 __using 1
+{
+}
+
+* 3 _nop()_  *
+sdcc 没有 _nop()_ , 可用如下自定义宏代替:
+#define _nop()_ __asm NOP __endasm 
