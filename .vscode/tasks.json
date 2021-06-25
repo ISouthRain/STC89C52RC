@@ -156,7 +156,7 @@
             "group": "none"
         },
         {
-            "label": "sdcc编译及转换c文件",
+            "label": "Windows sdcc编译及转换c文件",
             "group": "build",
             "presentation": {
                 "reveal": "silent",
