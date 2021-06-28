@@ -1,5 +1,7 @@
 #define led P1_0
-void OneLed(){
-    led=1;
+void OneLed_0(){
     led=0;
+}
+void OneLed_1(){
+    led=1;
 }
