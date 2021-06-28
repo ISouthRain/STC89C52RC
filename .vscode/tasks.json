@@ -3,6 +3,7 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
+        /*********** Linux运行sdcc *********************/
         {
             "label": "sdcc生成任务",
             "type": "shell",
@@ -24,7 +25,7 @@
         {
             "label": "stcgal进行任务",
             "type": "shell",
-            "command": "sudo stcgal -P stc89 -p /dev/ttyUSB0 -b 2400 ${fileBasenameNoExtension}.hex",
+            "command": "stcgal -P stc89 -p /dev/ttyS5 -b 2400 ${fileBasenameNoExtension}.hex",
             "options": {
                 "cwd": "${fileDirname}"
             },
@@ -33,7 +34,7 @@
         {
             "label": "完成删除多余文件",
             "type": "shell",
-            "command": "rm *.asm *.lst *.mem *.rst *.lk *.map *.rel *.sym",
+            "command": "rm *.asm *.lst *.mem *.rst *.lk *.map *.rel *.sym *.ihx",
             "options": {
                 "cwd": "${fileDirname}"
             },
@@ -55,11 +56,11 @@
             ],
             "problemMatcher": []
         },
-        //***************** 运行sdcc ***************///
+        //***************** Windows 运行sdcc ***************///
         {
             "label": "sdcc编译C文件",
             "type": "shell",
-            "command": "sdcc ${file}",
+            "command": "sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;remove-item ${fileBasenameNoExtension}.hex;sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;get-content ${fileBasenameNoExtension}.hex -encoding default | set-content ${fileBasenameNoExtension}1.hex -encoding UTF8;remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c*;mv ${fileBasenameNoExtension}1.hex ${fileBasenameNoExtension}.hex;Write-Host '全部已完成..'",
             "options": {
                 "cwd": "${fileDirname}"
             },
@@ -68,88 +69,43 @@
         {
             "label": "packihx转换文件",
             "type": "shell",
-            "command": "packihx ${fileBasenameNoExtension}.ihx > ${fileBasenameNoExtension}.hex",
+            "command": "packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex",
             "options": {
                 "cwd": "${fileDirname}"
             },
             "group": "none"
         },
         {
-            "label": "删除多余文件asm",
+            "label": "packihx转换文件后编码转换",
             "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.asm",
+            "command":  "get-content ${fileBasenameNoExtension}.hex -encoding default | set-content ${fileBasenameNoExtension}1.hex -encoding UTF8;Write-Host '转换完成...'",
             "options": {
                 "cwd": "${fileDirname}"
             },
             "group": "none"
         },
         {
-            "label": "删除多余文件lk",
+            "label": "删除文件",
             "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.lk",
+            "command": "remove-item ${fileBasenameNoExtension}.hex",
             "options": {
                 "cwd": "${fileDirname}"
             },
             "group": "none"
         },
         {
-            "label": "删除多余文件lst",
+            "label": "删除多余文件",
             "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.lst",
+            "command": "remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c*",
             "options": {
                 "cwd": "${fileDirname}"
             },
             "group": "none"
         },
         {
-            "label": "删除多余文件map",
+            "label": "重命名",
             "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.map",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件mem",
-            "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.mem",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件rel",
-            "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.rel",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件rst",
-            "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.rst",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件sym",
-            "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.sym",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件ihx",
-            "type": "shell",
-            "command": "rm ${fileBasenameNoExtension}.ihx",
+            "command": "mv ${fileBasenameNoExtension}1.hex ${fileBasenameNoExtension}.hex",
             "options": {
                 "cwd": "${fileDirname}"
             },
@@ -165,16 +121,13 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "sdcc编译C文件",
-                "packihx转换文件",
-                "删除多余文件sym",
-                "删除多余文件rst",
-                "删除多余文件rel",
-                "删除多余文件mem",
-                "删除多余文件map",
-                "删除多余文件lst",
-                "删除多余文件lk",
-                "删除多余文件asm",
-                "删除多余文件ihx"
+                //"packihx转换文件",
+                //"删除文件",
+                //"sdcc编译C文件",
+                //"packihx转换文件",
+                //"packihx转换文件后编码转换",
+                //"删除多余文件",
+                //"重命名",
             ],
             "problemMatcher": []
         },
