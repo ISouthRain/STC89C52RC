@@ -60,59 +60,14 @@
         {
             "label": "sdcc编译C文件",
             "type": "shell",
-            "command": "sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;remove-item ${fileBasenameNoExtension}.hex;sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;get-content ${fileBasenameNoExtension}.hex -encoding default | set-content ${fileBasenameNoExtension}1.hex -encoding UTF8;remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c*;mv ${fileBasenameNoExtension}1.hex ${fileBasenameNoExtension}.hex;Write-Host '全部已完成..'",
+            "command": "sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;remove-item ${fileBasenameNoExtension}.hex;sdcc ${file};packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex;get-content ${fileBasenameNoExtension}.hex -encoding default | set-content ${fileBasenameNoExtension}1.hex -encoding UTF7;remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c*;mv ${fileBasenameNoExtension}1.hex ${fileBasenameNoExtension}.hex;stcgal -P stc89 -p COM5 -b 2400 ${fileBasenameNoExtension}.hex",
             "options": {
                 "cwd": "${fileDirname}"
             },
             "group": "none"
         },
         {
-            "label": "packihx转换文件",
-            "type": "shell",
-            "command": "packihx ${fileBasenameNoExtension}.ihx >> ${fileBasenameNoExtension}.hex",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "packihx转换文件后编码转换",
-            "type": "shell",
-            "command":  "get-content ${fileBasenameNoExtension}.hex -encoding default | set-content ${fileBasenameNoExtension}1.hex -encoding UTF8;Write-Host '转换完成...'",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除文件",
-            "type": "shell",
-            "command": "remove-item ${fileBasenameNoExtension}.hex",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "删除多余文件",
-            "type": "shell",
-            "command": "remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c*",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "重命名",
-            "type": "shell",
-            "command": "mv ${fileBasenameNoExtension}1.hex ${fileBasenameNoExtension}.hex",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "none"
-        },
-        {
-            "label": "Windows sdcc编译及转换c文件",
+            "label": "Windows sdcc编译运行C文件",
             "group": "build",
             "presentation": {
                 "reveal": "silent",
