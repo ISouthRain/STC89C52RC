@@ -1,0 +1,45 @@
+C51 COMPILER V7.06   _¥_ö_²ÑôÊýÂë_Ü_²Ì__ÔÊ_                                                07/01/2021 19:42:21 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE _¥_ö_²ÑôÊýÂë_Ü_²Ì__ÔÊ_
+OBJECT MODULE PLACED IN c:\Users\Admin\Desktop\STC89C52RC\LY51S-cÓïÑÔ160¸ö³ÌÐò\LY-51S  cÓïÑÔ 160¸ö³ÌÐò\16-¹²ÑôÊýÂë¹Ü¾²Ì¬ÏÔÊ¾\µ¥¸ö¹²ÑôÊýÂë¹Ü¾²Ì¬ÏÔÊ¾.OBJ
+COMPILER INVOKED BY: F:\µ¥Æ¬»ú\8¡¢¸÷ÖÖÅäÌ×Èí¼þ\keil C51Èí¼þ\c51\BIN\c51.exe c:\Users\Admin\Desktop\STC89C52RC\LY51S-cÓïÑ
+                    -Ô160¸ö³ÌÐò\LY-51S  cÓïÑÔ 160¸ö³ÌÐò\16-¹²ÑôÊýÂë¹Ü¾²Ì¬ÏÔÊ¾\µ¥¸ö¹²ÑôÊýÂë¹Ü¾²Ì¬ÏÔÊ¾.c
+
+stmt level    source
+
+   1          /*-----------------------------------------------
+   2            Ãû³Æ£ºµ¥¸ö¹²ÑôÊýÂë¹Ü¾²Ì¬ÏÔÊ¾
+   3            ÂÛÌ³£ºwww.doflye.net
+   4            ±àÐ´£ºshifang
+   5            ÈÕÆÚ£º2009.5
+   6            ÐÞ¸Ä£ºÎÞ
+   7            ÄÚÈÝ£ºÍ¨¹ý¸³Öµ¸øP1£¬ÈÃÊýÂë¹ÜÏÔÊ¾ÌØ¶¨µÄ×Ö·û»òÕßÊý×Ö
+   8          ------------------------------------------------*/
+   9          #include<reg52.h> //°üº¬Í·ÎÄ¼þ£¬Ò»°ãÇé¿ö²»ÐèÒª¸Ä¶¯£¬
+  10          //Í·ÎÄ¼þ°üº¬ÌØÊâ¹¦ÄÜ¼Ä´æÆ÷µÄ¶¨Òå
+  11          
+  12          
+  13          void main (void)
+  14          {
+  15   1       P1=0xc0;   //¶þ½øÖÆ Îª 1100 0000  ²Î¿¼ÊýÂë¹ÜÅÅÁÐ£¬
+  16   1      //¿ÉÒÔµÃ³ö0¶ÔÓ¦µÄ¶ÎµãÁÁ£¬1¶ÔÓ¦µÄ¶ÎÏ¨Ãð£¬½á¹ûÏÔÊ¾Êý×Ö"0"   
+  17   1       while(1)
+  18   1       {
+  19   2      
+  20   2       }
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      5    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

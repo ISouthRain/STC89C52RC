@@ -1,5 +1,6 @@
 #include<8052.h>
-void Delay(unsigned int t);
+#include"C:\Users\Admin\Desktop\STC89C52RC\LED.h"
+#include"C:\Users\Admin\Desktop\STC89C52RC\Delay.h"
 void main()
 {
 		unsigned char i;
@@ -10,11 +11,5 @@ void main()
 				P1>>=1;
 		}
 		while(1){
-
 		}
-}
-
-void Delay(unsigned int t)
-{
-		while(--t);
 }

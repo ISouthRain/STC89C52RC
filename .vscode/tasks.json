@@ -67,6 +67,15 @@
             "group": "none"
         },
         {
+            "label": "Windows Keil编译C文件",
+            "type": "shell",
+            "command": "c51 ${file};BL51.exe ${fileBasenameNoExtension}.OBJ;OH51.exe ${fileBasenameNoExtension};remove-item * -Include ${fileBasenameNoExtension}.* -Exclude *c,hex*",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "none"
+        },
+        {
             "label": "Windows sdcc编译运行C文件",
             "group": "build",
             "presentation": {
